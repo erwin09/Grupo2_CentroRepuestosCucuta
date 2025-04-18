@@ -15,3 +15,12 @@ exports.createVehiculo = (req, res ) =>{
         res.status(201).send({ message: 'Vehiculo creado exitosamente', result });
     })
     }
+
+    exports.getAllVehiculos = (req, res) => {
+        Vehiculo.getAll((err, vehiculos) => {
+          if (err) {
+            return res.status(500).send({ message: 'Error al obtener los clientes', error: err });
+          }
+          res.status(200).send(vehiculos);
+        });
+      };

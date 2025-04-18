@@ -23,4 +23,15 @@ const Vehiculo = {
   }
 };
 
+getAll: (callback) => {
+    const query = 'SELECT * FROM vehiculos';
+    db.query(query, (err, results) => {
+      if (err) {
+        console.error(err);
+        return callback(err);
+      }
+      callback(null, results);
+    });
+  },
+
 module.exports = Vehiculo;
