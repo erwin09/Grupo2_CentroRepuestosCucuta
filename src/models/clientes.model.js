@@ -4,20 +4,8 @@ const db = require('../config/db');
 const Cliente = {
   // Crear un nuevo cliente
   create: (cliente, callback) => {
-    const query = 'INSERT INTO usuarios (Num_doc, tip_doc, nombre_usuario, apellidos, telefono, email, rol, estado, direccion, contraseña, fecha_registro) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-    const values = [
-      cliente.Num_doc,
-      cliente.tip_doc,
-      cliente.nombre_usuario,
-      cliente.apellidos,
-      cliente.telefono,
-      cliente.email,
-      cliente.rol,
-      cliente.estado,
-      cliente.direccion,
-      cliente.contraseña,
-      cliente.fecha_registro];
-    db.query(query, values, (err, results) => {
+    const query = 'INSERT INTO usuarios SET ?';
+    db.query(query, cliente, (err, results) => {
       if (err) {
         console.error(err);
         return callback(err);
