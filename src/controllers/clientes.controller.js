@@ -1,34 +1,32 @@
-// src/controllers/clientes.controller.js
 const Cliente = require('../models/clientes.model');
-const bcrypt = require('bcrypt');
+const clientesServices = require('../services/clientes.services');
+
 
 // Crear un nuevo cliente
 exports.createCliente = async (req, res) => {
-  const { Num_doc, tip_doc, nombre_usuario, apellidos, telefono, email, rol, estado, direccion, contraseña, fecha_registro } = req.body;
-  if (!Num_doc || !tip_doc || !nombre_usuario || !apellidos || !telefono || !email || !rol || !estado || !direccion || !contraseña || !fecha_registro) {
-    return res.status(400).send({ message: 'Todos los campos son necesarios' });
-  }
-
   try {
-    const saltRounds = 10;
-    const contraseñaHash = await bcrypt.hash(contraseña, saltRounds);
+    const result = await clientesServices.createCliente(req, res);
+    res.status(201).send({ message: 'Cliente creado exitosamente', result });
 
-    const nuevoCliente = { Num_doc, tip_doc, nombre_usuario, apellidos, telefono, email, rol, estado, direccion, contraseña: contraseñaHash, fecha_registro };
-
-
-    Cliente.create(nuevoCliente, (err, result) => {
-      if (err) {
-        return res.status(500).send({ message: 'Error al crear cliente', error: err });
-      }
-      res.status(201).send({ message: 'Cliente creado exitosamente', result });
-    });
-  } catch (erro) {
-    res.status(500).send({ message: 'Error al encriptar la contraseña', error });
+  } catch (error) {
+    if (error.message === 'Todos los campos son necesarios') {
+      return res.status(400).send({ message: error.message });
+    }
+    res.status(500).send({ message: 'Error al crear el cliente', error });
   }
 };
 
 // Obtener todos los clientes
-exports.getAllClientes = (req, res) => {
+exports.getAllClientes = async (req, res) => {
+
+  try {
+    const clientes = await clientesServices.obtenerClientes();
+    res.status(201).send(clientes);
+  } catch (error) {
+    res.status(500).send({message: 'Error al obtener los clientes', error})
+  }
+
+
   Cliente.getAll((err, clientes) => {
     if (err) {
       return res.status(500).send({ message: 'Error al obtener los clientes', error: err });
