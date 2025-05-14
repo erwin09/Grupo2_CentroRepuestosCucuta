@@ -3,14 +3,18 @@ const db = require('../config/db');
 
 const Cliente = {
   // Crear un nuevo cliente
-  create: (cliente, callback) => {
+  create: (cliente) => {
     const query = 'INSERT INTO usuarios SET ?';
-    db.query(query, cliente, (err, results) => {
-      if (err) {
-        console.error(err);
-        return callback(err);
-      }
-      callback(null, results);
+
+    return new Promise((resolve, reject) => {
+      db.query(query, cliente, (err, results) => {
+        if (err) {
+          console.error(err);
+          reject(err);
+        } else {
+          resolve(results)
+        }
+      });
     });
   },
 

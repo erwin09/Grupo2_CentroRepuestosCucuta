@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const clientesController = require('../controllers/clientes.controller');
 
+
 // Rutas para manejar clientes
 router.post('/', clientesController.createCliente);
 router.get('/', clientesController.getAllClientes);
