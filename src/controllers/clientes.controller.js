@@ -5,7 +5,7 @@ const clientesServices = require('../services/clientes.services');
 // Crear un nuevo cliente
 exports.createCliente = async (req, res) => {
   try {
-    const result = await clientesServices.createCliente(req, res);
+    const result = await clientesServices.crearCliente(req.body, res);
     res.status(201).send({ message: 'Cliente creado exitosamente', result });
 
   } catch (error) {
@@ -21,18 +21,10 @@ exports.getAllClientes = async (req, res) => {
 
   try {
     const clientes = await clientesServices.obtenerClientes();
-    res.status(201).send(clientes);
+    res.status(200).send(clientes);
   } catch (error) {
     res.status(500).send({message: 'Error al obtener los clientes', error})
   }
-
-
-  Cliente.getAll((err, clientes) => {
-    if (err) {
-      return res.status(500).send({ message: 'Error al obtener los clientes', error: err });
-    }
-    res.status(200).send(clientes);
-  });
 };
 
 // Obtener un cliente por ID
