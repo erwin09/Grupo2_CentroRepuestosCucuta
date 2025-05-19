@@ -23,26 +23,38 @@ exports.getAllClientes = async (req, res) => {
     const clientes = await clientesServices.obtenerClientes();
     res.status(200).send(clientes);
   } catch (error) {
-    res.status(500).send({message: 'Error al obtener los clientes', error})
+    res.status(500).send({ message: 'Error al obtener los clientes', error })
   }
 };
 
 // Obtener un cliente por ID
-exports.getClienteById = (req, res) => {
+exports.getClienteById = async (req, res) => {
   const id = req.params.id;
-  Cliente.getById(id, (err, cliente) => {
-    if (err) {
-      return res.status(500).send({ message: 'Error al obtener cliente', error: err });
-    }
-    if (!cliente.length) {
+  try {
+    const result = await clientesServices.obtenerPorId(id);
+    if (!result.length) {
       return res.status(404).send({ message: 'Cliente no encontrado' });
     }
-    res.status(200).send(cliente[0]);
-  });
+    res.status(200).send(result);
+  } catch (error) {
+    res.status(500).send({ message: 'Error al obtener el cliente', error })
+  };
 };
 
+exports.updateCliente = async (req, res) => {
+const id = req.params.id;
+const cliente = req.body;
+try {
+  const result = await clientesServices.actualizarUsuario(id, cliente);
+  res.status(200).send(result)
+} catch (error) {
+  res.status(500).send({message: 'Error al actualizar el cliente', error})
+}
+
+}
+
 // Actualizar un cliente
-exports.updateCliente = (req, res) => {
+/*exports.updateCliente = (req, res) => {
   const id = req.params.id;
   const { nombre, email, telefono } = req.body;
 
@@ -58,7 +70,7 @@ exports.updateCliente = (req, res) => {
     }
     res.status(200).send({ message: 'Cliente actualizado exitosamente', result });
   });
-};
+};*/
 
 // Eliminar un cliente
 exports.deleteCliente = (req, res) => {
