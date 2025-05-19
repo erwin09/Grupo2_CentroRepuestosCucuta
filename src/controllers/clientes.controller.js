@@ -53,25 +53,6 @@ try {
 
 }
 
-// Actualizar un cliente
-/*exports.updateCliente = (req, res) => {
-  const id = req.params.id;
-  const { nombre, email, telefono } = req.body;
-
-  if (!nombre || !email || !telefono) {
-    return res.status(400).send({ message: 'Todos los campos son necesarios' });
-  }
-
-  const clienteActualizado = { nombre, email, telefono };
-
-  Cliente.update(id, clienteActualizado, (err, result) => {
-    if (err) {
-      return res.status(500).send({ message: 'Error al actualizar cliente', error: err });
-    }
-    res.status(200).send({ message: 'Cliente actualizado exitosamente', result });
-  });
-};*/
-
 // Eliminar un cliente
 exports.deleteCliente = (req, res) => {
   const id = req.params.id;
