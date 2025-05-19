@@ -1,11 +1,15 @@
 const db = require('../config/db');
+const { getById, update } = require('./clientes.model');
 
 const Vehiculo = {
   create: (vehiculo, callback) => {
     const query = `
       INSERT INTO vehiculos SET ?`;
-    db.query(query, values, (err, results) => {
-      if (err) return callback(err);
+    db.query(query, vehiculo, (err, results) => {
+      if (err) {
+        console.error(err);
+      return callback(err);
+      }
       callback(null, results);
     });
   },
@@ -17,6 +21,37 @@ const Vehiculo = {
         return callback(err);
       }
       callback(null, results);
+    });
+  },
+
+  getById: (placa, callback) => {
+    db.query('SELECT * FROM vehiculos WHERE placa = ?', [placa], (err, result) => {
+      if (err) {
+        console.error(err);
+        return callback(err);
+      }
+      callback(null, result);
+    });
+  },
+
+  update: (placa, vehiculo, callback) => {
+    const query = ('UPDATE vehiculos SET ? WHERE placa = ?');
+    db.query(query, [vehiculo, placa], (err, result) => {
+      if (err){
+        console.error(err);
+        return callback(err);
+      }
+      callback(null, result);
+    });
+  },
+
+  delete : (placa, callback) => {
+    db.query('DELET FROM vehiculos WHERE placa = ?', [placa], (err, result) => {
+      if (err){
+        console.error(err);
+        return callback(err);
+      }
+      callback(null, result);
     });
   }
 };
