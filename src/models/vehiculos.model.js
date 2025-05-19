@@ -1,5 +1,4 @@
 const db = require('../config/db');
-const { getById, update } = require('./clientes.model');
 
 const Vehiculo = {
   create: (vehiculo, callback) => {
@@ -20,7 +19,7 @@ const Vehiculo = {
         console.error(err);
         return callback(err);
       }
-      callback(null, results);
+      callback(null, result);
     });
   },
 
