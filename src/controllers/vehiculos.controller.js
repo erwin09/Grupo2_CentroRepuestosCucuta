@@ -20,15 +20,27 @@ exports.getAllVehiculos = async (req, res) => {
      const vehiculos = await serviceVehiculo.obtenerVehiculos();
      res.status(200).send(vehiculos);
    } catch (error) {
-     res.status(500).send({ message: 'Error al obtener los vehiculos', error })
+     res.status(500).send({ message: 'Error al obtener los vehiculos', error });
    }
 };
 
 exports.getVehiculoByPlaca = async (req, res) => {
+  const placa = req.params.placa;
   try {
     const vehiculo = await serviceVehiculo.obtenerPorPlaca(placa);
     res.status(200).send(vehiculo);
   } catch (error) {
-    res.status(500).send({message: 'Error al obtener el vehiculo', error })
+    res.status(500).send({message: 'Error al obtener el vehiculo', error });
   }
 };
+
+exports.updateVehiculo = async (req, res) => {
+  const placa = req.params.placa;
+  const datos = req.body;
+  try {
+    const vehiculo = await serviceVehiculo.actualizarVehiculo(placa , datos);
+    res.status(200).send(vehiculo);
+  } catch (error) {
+    res.status(500).send({message: 'Error al actualizar el vehiculo', error});
+  }
+}

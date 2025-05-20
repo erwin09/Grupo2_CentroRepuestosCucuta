@@ -34,8 +34,14 @@ const obtenerPorId = async (idData) => {
 };
 
 const actualizarUsuario = async (idData, cliente) => {
-  return new Promise((resolve,reject) => {
-    ClienteModel.update(idData,cliente, (err, datos) => {
+  const pasword = cliente.contraseña;
+  if (pasword) {
+    const saltRounds = 10;
+    const contraseñaHash = await bcrypt.hash(pasword, saltRounds);
+    cliente.contraseña = contraseñaHash;
+  }
+  return new Promise((resolve, reject) => {
+    ClienteModel.update(idData, cliente, (err, datos) => {
       if (err) return reject(err);
       resolve(datos);
     });
