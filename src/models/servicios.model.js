@@ -2,8 +2,7 @@ const db = require('../config/db')
 
 const Servicio = {
     create: (servicio, callback) => {
-    const query = `
-      INSERT INTO servicios SET ?`;
+    const query = `INSERT INTO servicios SET ?`;
     db.query(query, servicio, (err, results) => {
       if (err) {
         console.error(err);
