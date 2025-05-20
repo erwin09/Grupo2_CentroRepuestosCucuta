@@ -42,6 +42,8 @@ const actualizarVehiculo = async (placa, datos) => {
   });
 };
 
+
+
 module.exports = {
   crearVehiculo,
   obtenerVehiculos,

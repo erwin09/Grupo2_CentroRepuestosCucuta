@@ -1,4 +1,3 @@
-const Vehiculo = require('../models/vehiculos.model')
 const serviceVehiculo = require('../services/vehiculo.services')
 
 exports.createVehiculo = async (req, res) => {
@@ -43,4 +42,4 @@ exports.updateVehiculo = async (req, res) => {
   } catch (error) {
     res.status(500).send({message: 'Error al actualizar el vehiculo', error});
   }
-}
+};
