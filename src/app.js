@@ -4,6 +4,7 @@ require('dotenv').config();
 const clientesRoutes = require('./routes/clientes.routes')
 const vehiculosRoutes = require('./routes/vehiculos.routes');
 const authRoutes = require('./routes/auth.routes');
+const serviciosRoutes = require('./routes/servicios.routes');
 const app = express();
 
 
@@ -16,6 +17,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/clientes', clientesRoutes);
 //Ruta vehiculos
 app.use('/api/vehiculos', vehiculosRoutes);
-
+//Ruta servicios
+app.use('/api/servicios', serviciosRoutes);
 
 module.exports = app;
