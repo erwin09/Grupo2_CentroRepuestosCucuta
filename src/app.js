@@ -6,6 +6,9 @@ const vehiculosRoutes = require('./routes/vehiculos.routes');
 const authRoutes = require('./routes/auth.routes');
 const serviciosRoutes = require('./routes/servicios.routes');
 const proveedoresRoutes = require('./routes/proveedores.routes');
+const productosRoutes = require('./routes/productos.routes');
+const notificacionRoutes = require('./routes/notificaciones.routes');
+const marcasRoutes = require('./routes/marca.routes');
 const app = express();
 
 
@@ -22,5 +25,11 @@ app.use('/api/vehiculos', vehiculosRoutes);
 app.use('/api/servicios', serviciosRoutes);
 //Ruta proveedores
 app.use('/api/proveedores', proveedoresRoutes);
+//Ruta productos
+app.use('/api/productos', productosRoutes);
+//Ruta notificaciones
+app.use('/api/notificaciones', notificacionRoutes);
+//Ruta marcas
+app.use('/api/marcas', marcasRoutes);
 
 module.exports = app;
