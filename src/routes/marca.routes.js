@@ -5,6 +5,6 @@ const marcasController = require('../controllers/marcas.controller');
 router.post('/', marcasController.createMarca);
 router.get('/', marcasController.getAllMarca);
 router.get('/:id', marcasController.getMarcaById);
-router.put('/:id', marcasController.updatemarca);
+router.put('/:id', marcasController.updateMarca);
 
 module.exports = router;
