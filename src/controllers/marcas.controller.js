@@ -33,7 +33,7 @@ exports.getMarcaById = async (req, res) => {
   }
 };
 
-exports.updatemarca = async (req, res) => {
+exports.updateMarca = async (req, res) => {
   const idMarca = req.params.id;
   const datos = req.body;
   try {
