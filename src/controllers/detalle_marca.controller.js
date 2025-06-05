@@ -19,7 +19,7 @@ exports.getAllDetalleMarca = async (req, res) => {
         const result = await serviceDetalleMarca.obtenerDetallesMarca();
         res.status(200).send({ message: 'Consulta exitosa', result });
     } catch (error) {
-        res.status(500).send({ message: 'Error al obtener las citas', error });
+        res.status(500).send({ message: 'Error al obtener', error });
     }
 };
 
