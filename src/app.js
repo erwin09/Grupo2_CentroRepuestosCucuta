@@ -12,7 +12,9 @@ const marcasRoutes = require('./routes/marca.routes');
 const historialesRoutes = require('./routes/historiales.routes');
 const citaRoutes = require('./routes/citas.routes');
 const detalleMarcaRoutes = require('./routes/detalle_marca.routes');
-const detalleNotificacionRoutes = require('./routes/detalle_notificacion.routes')
+const detalleNotificacionRoutes = require('./routes/detalle_notificacion.routes');
+const detalleProductoRoutes = require('./routes/detalle_producto.routes');
+const detalleServicioRoutes = require('./routes/detalle_servicio.routes');
 const app = express();
 
 
@@ -43,5 +45,9 @@ app.use('/api/citas', citaRoutes);
 app.use('/api/detalleMarca', detalleMarcaRoutes);
 //Ruta detalles notificación
 app.use('/api/detallenotificacion', detalleNotificacionRoutes);
+//Ruta detalles producto
+app.use('/api/detalleproducto', detalleProductoRoutes);
+//Ruta detalles servicio
+app.use('/api/detalleservicio', detalleServicioRoutes);
 
 module.exports = app;

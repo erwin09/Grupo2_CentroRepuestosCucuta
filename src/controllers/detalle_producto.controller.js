@@ -1,10 +1,10 @@
-const serviceDetalleMarca = require('../services/detalle_marca.services');
+const serviceDetalleProducto = require('../services/detalle_producto.service');
 
-exports.createDetalleMarca = async (req, res) => {
+exports.createDetalleProducto = async (req, res) => {
 
     try {
-        const result = await serviceDetalleMarca.crearDetalleMarca(req.body, res);
-        res.status(201).send({ message: 'Detalle marca creada exitosamente', result });
+        const result = await serviceDetalleProducto.crearDetalleProducto(req.body, res);
+        res.status(201).send({ message: 'Detalle producto creada exitosamente', result });
 
     } catch (error) {
         if (error.message == 'Todos los campos son necesarios') {
@@ -14,33 +14,32 @@ exports.createDetalleMarca = async (req, res) => {
     }
 };
 
-exports.getAllDetalleMarca = async (req, res) => {
+exports.getAllDetalleProducto = async (req, res) => {
     try {
-        const result = await serviceDetalleMarca.obtenerDetallesMarca();
+        const result = await serviceDetalleProducto.obtenerDetallesProducto();
         res.status(200).send({ message: 'Consulta exitosa', result });
     } catch (error) {
         res.status(500).send({ message: 'Error al obtener', error });
     }
 };
 
-exports.getDetalleMarcaById = async (req, res) => {
+exports.getDetalleProductoById = async (req, res) => {
     const idProducto = req.params.id1;
-    console.log("info params", req.params.id2)
-    const idMarca = req.params.id2;
+    const idHistorial = req.params.id2;
     try {
-        const result = await serviceDetalleMarca.obtenerPorIdDetalles(idProducto, idMarca);
+        const result = await serviceDetalleProducto.obtenerPorIdDetallesProducto(idProducto, idHistorial);
         res.status(200).send({ message: 'Consulta exitosa', result });
     } catch (error) {
         res.status(500).send({ message: 'Error al obtener', error });
     }
 };
 
-exports.updateDetalleMarca = async (req, res) => {
+exports.updateDetalleProducto = async (req, res) => {
     const idProducto = req.params.id1;
-    const idMarca = req.params.id2;
+    const idHistorial = req.params.id2;
     const datos = req.body;
     try {
-        const result = await serviceDetalleMarca.actualizarDetalleMarca(idProducto, idMarca, datos);
+        const result = await serviceDetalleProducto.actualizarDetalleProducto(idProducto, idHistorial, datos);
         res.status(200).send({ message: 'Actualización exitosa', result });
     } catch (error) {
         res.status(500).send({ message: 'Error al actualizar', error });

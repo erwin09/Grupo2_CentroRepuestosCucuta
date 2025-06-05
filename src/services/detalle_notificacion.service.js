@@ -33,7 +33,7 @@ const obtenerPorIdDetallesNotificacion = async (IdNotificacion, IdHistorial) => 
   });
 };
 
-const actualizarDetalleMarca = async (IdNotificacion, IdHistorial, datos) => {
+const actualizarDetalleNotificacion = async (IdNotificacion, IdHistorial, datos) => {
   return new Promise ((resolve, reject) => {
     DetalleNotificacion.update(IdNotificacion, IdHistorial, datos,(err, result) => {
       if (err) return reject(err);
@@ -48,5 +48,5 @@ module.exports = {
   crearDetalleNotificacion,
   obtenerDetallesNtoificacion,
   obtenerPorIdDetallesNotificacion,
-  actualizarDetalleMarca
+  actualizarDetalleNotificacion
 }
