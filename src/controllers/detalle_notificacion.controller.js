@@ -27,7 +27,7 @@ exports.getDetalleNotificacionById = async (req, res) => {
     const idNotificacion = req.params.id1;
     const idHistorial = req.params.id2;
     try {
-        const result = await serviceDetalleNotificacion.obtenerPorIdDetalles(idNotificacion, idHistorial);
+        const result = await serviceDetalleNotificacion.obtenerPorIdDetallesNotificacion(idNotificacion, idHistorial);
         res.status(200).send({ message: 'Consulta exitosa', result });
     } catch (error) {
         res.status(500).send({ message: 'Error al obtener', error });
@@ -35,11 +35,11 @@ exports.getDetalleNotificacionById = async (req, res) => {
 };
 
 exports.updateDetalleNotificacion = async (req, res) => {
-    const idNotificacion = req.params.ID_producto;
-    const idHistorial = req.params.ID_marca;
+    const idNotificacion = req.params.id1;
+    const idHistorial = req.params.id2;
     const datos = req.body;
     try {
-        const result = await serviceDetalleNotificacion.actualizarCita(idNotificacion, idHistorial, datos);
+        const result = await serviceDetalleNotificacion.actualizarDetalleNotificacion(idNotificacion, idHistorial, datos);
         res.status(200).send({ message: 'Actualización exitosa', result });
     } catch (error) {
         res.status(500).send({ message: 'Error al actualizar', error });
