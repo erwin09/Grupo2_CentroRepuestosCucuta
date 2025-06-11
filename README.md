@@ -1,3 +1,3 @@
 # Grupo2_CentroRepuestosCucuta
 enlace para documentación de proyecto
-https://sena4-my.sharepoint.com/:f:/g/personal/lfossi_sena_edu_co/Enj39sKqUWtBiO1wK4V86HkBzrqf7KEnV-9t81zNh6Tgag?e=GccvLX
+https://soysena-my.sharepoint.com/:w:/g/personal/erwin_antolinez_soy_sena_edu_co/EU65fiZIxe9Ftaskt2caUtABB3V3DHzZwGcHQCRx5meTIg?e=fm6qaz
