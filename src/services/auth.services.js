@@ -6,7 +6,7 @@ const login = async (Num_doc, contraseña) => {
     return new Promise((resolve, reject) => {
         const query = 'SELECT * FROM usuarios WHERE Num_doc = ?';
         db.query(query, [Num_doc], async (err, results) => {
-            if (err) return reject({ status: 5, message: 'Error del servidor', error: err });
+            if (err) return reject({ status: 500, message: 'Error del servidor', error: err });
 
             if (results.length === 0) {
                 return reject({ status: 401, message: 'Usuario no encontrado' });
