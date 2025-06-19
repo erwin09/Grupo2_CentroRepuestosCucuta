@@ -1,12 +1,12 @@
 const DetalleProducto = require('../models/detalle_producto.model');
 
 const crearDetalleProducto = async (datos) => {
-  const { ID_producto, ID_historial, cantidad } = datos;
-  if (!ID_producto || !ID_historial || !cantidad ) {
+  const { ID_producto, ID_mantenimiento, cantidad } = datos;
+  if (!ID_producto || !ID_mantenimiento || !cantidad ) {
     throw new Error('Todos los campos son necesarios');
   }
 
-  const nuevoDetalleProducto = { ID_producto, ID_historial, cantidad };
+  const nuevoDetalleProducto = { ID_producto, ID_mantenimiento, cantidad };
   return new Promise((resolve, reject) => {
     DetalleProducto.create(nuevoDetalleProducto, (err, result) => {
       if (err) return reject(err);
@@ -24,18 +24,18 @@ const obtenerDetallesProducto = async () => {
   });
 };
 
-const obtenerPorIdDetallesProducto = async (IdProducto, IdHistorial) => {
+const obtenerPorIdDetallesProducto = async (IdProducto, IdMantenimiento) => {
   return new Promise((resolve, reject) => {
-    DetalleProducto.getById(IdProducto, IdHistorial, (err, result) => {
+    DetalleProducto.getById(IdProducto, IdMantenimiento, (err, result) => {
       if (err) return reject(err);
       resolve(result);
     });
   });
 };
 
-const actualizarDetalleProducto = async (IdProducto, IdHistorial, datos) => {
+const actualizarDetalleProducto = async (IdProducto, IdMantenimiento, datos) => {
   return new Promise ((resolve, reject) => {
-    DetalleProducto.update(IdProducto, IdHistorial, datos,(err, result) => {
+    DetalleProducto.update(IdProducto, IdMantenimiento, datos,(err, result) => {
       if (err) return reject(err);
       resolve(result);
     });

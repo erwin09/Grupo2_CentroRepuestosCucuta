@@ -22,8 +22,8 @@ const DetalleServicio = {
     });
   },
 
-  getById: (IdHistorial, Idservicio, callback) => {
-    db.query('SELECT * FROM detalles_servicio WHERE ID_historial = ? AND ID_servicio = ?', [IdHistorial, Idservicio], (err, result) => {
+  getById: (IdMantenimiento, Idservicio, callback) => {
+    db.query('SELECT * FROM detalles_servicio WHERE ID_mantenimiento = ? AND ID_servicio = ?', [IdMantenimiento, Idservicio], (err, result) => {
       if (err) {
         console.error(err);
         return callback(err);
@@ -32,9 +32,9 @@ const DetalleServicio = {
     });
   },
 
-  update: (IdHistorial, Idservicio, callback) => {
-    const query = ('UPDATE detalles_servicio SET ? WHERE ID_historial = ? AND ID_servicio = ?');
-    db.query(query, [IdHistorial, Idservicio], (err, result) => {
+  update: (IdMantenimiento, Idservicio, callback) => {
+    const query = ('UPDATE detalles_servicio SET ? WHERE ID_mantenimiento = ? AND ID_servicio = ?');
+    db.query(query, [IdMantenimiento, Idservicio], (err, result) => {
       if (err){
         console.error(err);
         return callback(err);
@@ -43,8 +43,8 @@ const DetalleServicio = {
     });
   },
 
-  delete : (IdHistorial, Idservicio, callback) => {
-    db.query('DELET FROM detalles_servicio WHERE ID_historial = ? AND ID_servicio', [IdHistorial, Idservicio], (err, result) => {
+  delete : (IdMantenimiento, Idservicio, callback) => {
+    db.query('DELET FROM detalles_servicio WHERE ID_mantenimiento = ? AND ID_servicio', [IdMantenimiento, Idservicio], (err, result) => {
       if (err){
         console.error(err);
         return callback(err);

@@ -1,12 +1,12 @@
 const DetalleServicio = require('../models/detalle_servicio.model');
 
 const crearDetalleServicio = async (datos) => {
-  const { ID_historial, ID_servicio } = datos;
-  if (!ID_historial || !ID_servicio ) {
+  const { ID_mantenimiento, ID_servicio } = datos;
+  if (!ID_mantenimiento || !ID_servicio ) {
     throw new Error('Todos los campos son necesarios');
   }
 
-  const nuevoDetalleServicio = { ID_historial, ID_servicio };
+  const nuevoDetalleServicio = { ID_mantenimiento, ID_servicio };
   return new Promise((resolve, reject) => {
     DetalleServicio.create(nuevoDetalleServicio, (err, result) => {
       if (err) return reject(err);
@@ -24,18 +24,18 @@ const obtenerDetallesServicio = async () => {
   });
 };
 
-const obtenerPorIdDetallesServicio = async (IdHistorial, IdServicio) => {
+const obtenerPorIdDetallesServicio = async (IdMantenimiento, IdServicio) => {
   return new Promise((resolve, reject) => {
-    DetalleServicio.getById(IdHistorial, IdServicio, (err, result) => {
+    DetalleServicio.getById(IdMantenimiento, IdServicio, (err, result) => {
       if (err) return reject(err);
       resolve(result);
     });
   });
 };
 
-const actualizarDetalleServicio = async (IdHistorial, IdServicio, datos) => {
+const actualizarDetalleServicio = async (IdMantenimiento, IdServicio, datos) => {
   return new Promise ((resolve, reject) => {
-    DetalleServicio.update(IdHistorial, IdServicio, datos,(err, result) => {
+    DetalleServicio.update(IdMantenimiento, IdServicio, datos,(err, result) => {
       if (err) return reject(err);
       resolve(result);
     });

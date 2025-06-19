@@ -1,12 +1,12 @@
 const DetalleNotificacion = require('../models/detalle_notificacion.model');
 
 const crearDetalleNotificacion = async (datos) => {
-  const { ID_notificacion, ID_historial, detalle } = datos;
-  if (!ID_notificacion || !ID_historial || !detalle ) {
+  const { ID_notificacion, ID_mantenimiento, detalle } = datos;
+  if (!ID_notificacion || !ID_mantenimiento || !detalle ) {
     throw new Error('Todos los campos son necesarios');
   }
 
-  const nuevoDetalleNotificacion = { ID_notificacion, ID_historial, detalle };
+  const nuevoDetalleNotificacion = { ID_notificacion, ID_mantenimiento, detalle };
   return new Promise((resolve, reject) => {
     DetalleNotificacion.create(nuevoDetalleNotificacion, (err, result) => {
       if (err) return reject(err);
@@ -24,18 +24,18 @@ const obtenerDetallesNtoificacion = async () => {
   });
 };
 
-const obtenerPorIdDetallesNotificacion = async (IdNotificacion, IdHistorial) => {
+const obtenerPorIdDetallesNotificacion = async (IdNotificacion, IdMantenimiento) => {
   return new Promise((resolve, reject) => {
-    DetalleNotificacion.getById(IdNotificacion, IdHistorial, (err, result) => {
+    DetalleNotificacion.getById(IdNotificacion, IdMantenimiento, (err, result) => {
       if (err) return reject(err);
       resolve(result);
     });
   });
 };
 
-const actualizarDetalleNotificacion = async (IdNotificacion, IdHistorial, datos) => {
+const actualizarDetalleNotificacion = async (IdNotificacion, IdMantenimiento, datos) => {
   return new Promise ((resolve, reject) => {
-    DetalleNotificacion.update(IdNotificacion, IdHistorial, datos,(err, result) => {
+    DetalleNotificacion.update(IdNotificacion, IdMantenimiento, datos,(err, result) => {
       if (err) return reject(err);
       resolve(result);
     });

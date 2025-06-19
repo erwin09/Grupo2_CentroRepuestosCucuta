@@ -22,8 +22,8 @@ const DetalleProducto = {
     });
   },
 
-  getById: (Idproducto, IdHistorial, callback) => {
-    db.query('SELECT * FROM detalles_producto WHERE ID_producto = ? AND ID_historial = ?', [Idproducto, IdHistorial], (err, result) => {
+  getById: (Idproducto, IdMantenimiento, callback) => {
+    db.query('SELECT * FROM detalles_producto WHERE ID_producto = ? AND ID_mantenimiento = ?', [Idproducto, IdMantenimiento], (err, result) => {
       if (err) {
         console.error(err);
         return callback(err);
@@ -32,9 +32,9 @@ const DetalleProducto = {
     });
   },
 
-  update: (Idproducto, IdHistorial, callback) => {
-    const query = ('UPDATE detalles_producto SET ? WHERE ID_producto = ? AND ID_historial = ?');
-    db.query(query, [Idproducto, IdHistorial], (err, result) => {
+  update: (Idproducto, IdMantenimiento, callback) => {
+    const query = ('UPDATE detalles_producto SET ? WHERE ID_producto = ? AND ID_mantenimiento = ?');
+    db.query(query, [Idproducto, IdMantenimiento], (err, result) => {
       if (err){
         console.error(err);
         return callback(err);
@@ -43,8 +43,8 @@ const DetalleProducto = {
     });
   },
 
-  delete : (Idproducto, IdHistorial, callback) => {
-    db.query('DELET FROM detalles_producto WHERE ID_producto = ? AND ID_historial', [Idproducto, IdHistorial], (err, result) => {
+  delete : (Idproducto, IdMantenimiento, callback) => {
+    db.query('DELET FROM detalles_producto WHERE ID_producto = ? AND ID_mantenimiento', [Idproducto, IdMantenimiento], (err, result) => {
       if (err){
         console.error(err);
         return callback(err);
