@@ -9,7 +9,7 @@ const login = async (Num_doc, contraseña) => {
             if (err) return reject({ status: 500, message: 'Error del servidor', error: err });
 
             if (results.length === 0) {
-                return reject({ status: 401, message: 'Usuario no encontrado' });
+                return reject({ status: 404, message: 'Usuario no encontrado' });
             }
 
             const usuario = results[0];
