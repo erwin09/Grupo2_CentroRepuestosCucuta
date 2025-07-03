@@ -2,15 +2,17 @@ const ClienteModel = require('../models/clientes.model');
 const bcrypt = require('bcrypt');
 
 const crearCliente = async (clienteData) => {
-  const { Num_doc, tip_doc, nombre_usuario, apellidos, telefono, email, rol, estado, direccion, contraseña, fecha_registro } = clienteData;
-  if (!Num_doc || !tip_doc || !nombre_usuario || !apellidos || !telefono || !email || !rol || !estado || !direccion || !contraseña || !fecha_registro) {
+  const { Num_doc, tip_doc, nombre_usuario, apellidos, telefono, email, rol, estado, direccion, contrasena, fecha_registro } = clienteData;
+  if (!Num_doc || !tip_doc || !nombre_usuario || !apellidos || !telefono || !email || !rol || !estado || !direccion || !contrasena || !fecha_registro) {
     throw new Error('Todos los campos son necesarios');
   }
+  console.log("clientedata", clienteData);
+  
 
   const saltRounds = 10;
-  const contraseñaHash = await bcrypt.hash(contraseña, saltRounds);
-  const nuevoCliente = { Num_doc, tip_doc, nombre_usuario, apellidos, telefono, email, rol, estado, direccion, contraseña: contraseñaHash, fecha_registro };
-
+  const contraseñaHash = await bcrypt.hash(contrasena, saltRounds);
+  const nuevoCliente = { Num_doc, tip_doc, nombre_usuario, apellidos, telefono, email, rol, estado, direccion, contrasena: contraseñaHash, fecha_registro };
+console.log(" nuevocliente", nuevoCliente);
   return await ClienteModel.create(nuevoCliente);
 };
 
@@ -34,11 +36,11 @@ const obtenerPorId = async (idData) => {
 };
 
 const actualizarUsuario = async (idData, cliente) => {
-  const pasword = cliente.contraseña;
+  const pasword = cliente.contrasena;
   if (pasword) {
     const saltRounds = 10;
     const contraseñaHash = await bcrypt.hash(pasword, saltRounds);
-    cliente.contraseña = contraseñaHash;
+    cliente.contrasena = contraseñaHash;
   }
   return new Promise((resolve, reject) => {
     ClienteModel.update(idData, cliente, (err, datos) => {

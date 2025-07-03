@@ -1,6 +1,7 @@
 const serviceVehiculo = require('../services/vehiculo.services')
 
 exports.createVehiculo = async (req, res) => {
+console.log("datos del vehiculo", req.body);
 
   try {
     const result = await serviceVehiculo.crearVehiculo(req.body, res);
