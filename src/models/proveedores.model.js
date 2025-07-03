@@ -12,6 +12,18 @@ const Proveedor = {
     });
   },
 
+  createUpdate: (datos) => {
+    return new Promise((resolve, reject) => {
+      db.query('INSERT INTO proveedor SET ?', [datos], (err, result) => {
+      if (err) {
+        console.error(err);
+        return reject(err);
+      }
+        resolve(result);
+      });
+    });
+  },
+
   getAll: (callback) => {
     db.query('SELEct * FROM proveedores', (err, result) => {
       if (err) {
@@ -29,6 +41,18 @@ const Proveedor = {
         return callback(err);
       }
       callback(null, result);
+    });
+  },
+
+  getByName: (nameProveedor) => {
+    return new Promise((resolve, reject) => {
+      db.query('SELECT * FROM proveedores WHERE nombre = ?', [nameProveedor], (err, result) => {
+      if (err) {
+        console.error(err);
+        return reject(err);
+      }
+        resolve(result);
+      });
     });
   },
 

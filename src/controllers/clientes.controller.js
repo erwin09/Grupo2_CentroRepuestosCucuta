@@ -4,6 +4,8 @@ const clientesServices = require('../services/clientes.services');
 
 // Crear un nuevo cliente
 exports.createCliente = async (req, res) => {
+  console.log("datos usuario", req.body);
+  
   try {
     const result = await clientesServices.crearCliente(req.body, res);
     res.status(201).send({ message: 'Cliente creado exitosamente', result });
