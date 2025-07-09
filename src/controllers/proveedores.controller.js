@@ -3,7 +3,8 @@ const serviceProveedor = require('../services/proveedores.services');
 exports.createProveedor = async (req, res) => {
 
   try {
-    const result = await serviceProveedor.crearProveedor(req.body, res);
+    const result = await serviceProveedor.crearProveedor(req.body);
+    
     res.status(201).send({ message: 'Proveedor creado exitosamente', result });
 
   } catch (error) {

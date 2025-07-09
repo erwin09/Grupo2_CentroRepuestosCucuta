@@ -25,9 +25,23 @@ exports.getAllVehiculos = async (req, res) => {
 };
 
 exports.getVehiculoByPlaca = async (req, res) => {
-  const placa = req.params.placa;
+  const placa = req.params.id;
+  console.log("id en el controlador", placa);
+  
   try {
     const vehiculo = await serviceVehiculo.obtenerPorPlaca(placa);
+    res.status(200).send(vehiculo);
+  } catch (error) {
+    res.status(500).send({message: 'Error al obtener el vehiculo', error });
+  }
+};
+
+exports.getVehiculoByPlaca = async (req, res) => {
+  const Id_usuario = req.params.id;
+  console.log("id en el controlador", Id_usuario);
+  
+  try {
+    const vehiculo = await serviceVehiculo.obtenerPorIdUsuario(Id_usuario);
     res.status(200).send(vehiculo);
   } catch (error) {
     res.status(500).send({message: 'Error al obtener el vehiculo', error });

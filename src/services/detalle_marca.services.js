@@ -2,6 +2,8 @@ const DetalleMarca = require('../models/detalle_marca.model');
 
 const crearDetalleMarca = async (datos) => {
   const { ID_producto, ID_marca, cantidad } = datos;
+  console.log("detalles marca", datos);
+  
   if (!ID_producto || !ID_marca || !cantidad ) {
     throw new Error('Todos los campos son necesarios');
   }

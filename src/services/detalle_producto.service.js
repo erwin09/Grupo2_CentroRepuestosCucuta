@@ -1,6 +1,7 @@
 const DetalleProducto = require('../models/detalle_producto.model');
 
 const crearDetalleProducto = async (datos) => {
+  console.log("detalles producto", datos);
   const { ID_producto, ID_mantenimiento, cantidad } = datos;
   if (!ID_producto || !ID_mantenimiento || !cantidad ) {
     throw new Error('Todos los campos son necesarios');

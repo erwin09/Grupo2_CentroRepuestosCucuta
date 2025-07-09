@@ -1,12 +1,12 @@
 const DetalleNotificacion = require('../models/detalle_notificacion.model');
 
 const crearDetalleNotificacion = async (datos) => {
-  const { ID_notificacion, ID_mantenimiento, detalle } = datos;
-  if (!ID_notificacion || !ID_mantenimiento || !detalle ) {
+  const { ID_notificacion, ID_mantenimiento, fecha_programada } = datos;
+  if (!ID_notificacion || !ID_mantenimiento || !fecha_programada ) {
     throw new Error('Todos los campos son necesarios');
   }
 
-  const nuevoDetalleNotificacion = { ID_notificacion, ID_mantenimiento, detalle };
+  const nuevoDetalleNotificacion = { ID_notificacion, ID_mantenimiento, fecha_programada };
   return new Promise((resolve, reject) => {
     DetalleNotificacion.create(nuevoDetalleNotificacion, (err, result) => {
       if (err) return reject(err);

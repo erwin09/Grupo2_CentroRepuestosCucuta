@@ -15,8 +15,11 @@ exports.createProducto = async (req, res) => {
 };
 
 exports.createProductoCompleto = async (req, res) => {
+console.log("datos en el controlador 1", req.body);
+  
   try {
     const result = await serviceProductos.crearProductoCompleto(req.body);
+      console.log("datos en el controlador", result);
     res.status(201).json({
       message: result.message,
     });
@@ -30,6 +33,8 @@ exports.createProductoCompleto = async (req, res) => {
 };
 
 exports.getAllProductos = async (req, res) => {
+  console.log("ya entro aqui en productos");
+  
   try {
     const result = await serviceProductos.obtenerProductos();
     res.status(200).send({ message: 'Consulta exitosa', result });
