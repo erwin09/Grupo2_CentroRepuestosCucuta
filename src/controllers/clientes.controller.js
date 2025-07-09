@@ -20,10 +20,12 @@ exports.createCliente = async (req, res) => {
 
 // Obtener todos los clientes
 exports.getAllClientes = async (req, res) => {
+console.log("entro aqui");
 
   try {
     const clientes = await clientesServices.obtenerClientes();
     res.status(200).send(clientes);
+    
   } catch (error) {
     res.status(500).send({ message: 'Error al obtener los clientes', error })
   }

@@ -1,24 +1,34 @@
 const db = require('../config/db');
 
 const Proveedor = {
-    create: (proveedor, callback) => {
+  create: (proveedor, callback) => {
     const query = `INSERT INTO proveedores SET ?`;
     db.query(query, proveedor, (err, results) => {
       if (err) {
         console.error(err);
-      return callback(err);
-      }
-      callback(null, results);
+        return callback(err);
+      } 
+      
+      const insertedId = proveedor.Id_proveedor;
+      const selectQuery = `SELECT * FROM proveedores WHERE Id_proveedor = ?`;
+      db.query(selectQuery, [insertedId], (err, rows) => {
+        if (err) {
+          console.error(err);
+          return callback(err);
+        }
+
+        callback(null, rows[0]);
+      });
     });
   },
 
   createUpdate: (datos) => {
     return new Promise((resolve, reject) => {
       db.query('INSERT INTO proveedor SET ?', [datos], (err, result) => {
-      if (err) {
-        console.error(err);
-        return reject(err);
-      }
+        if (err) {
+          console.error(err);
+          return reject(err);
+        }
         resolve(result);
       });
     });
@@ -47,10 +57,10 @@ const Proveedor = {
   getByName: (nameProveedor) => {
     return new Promise((resolve, reject) => {
       db.query('SELECT * FROM proveedores WHERE nombre = ?', [nameProveedor], (err, result) => {
-      if (err) {
-        console.error(err);
-        return reject(err);
-      }
+        if (err) {
+          console.error(err);
+          return reject(err);
+        }
         resolve(result);
       });
     });
@@ -59,7 +69,7 @@ const Proveedor = {
   update: (idProveedor, proveedor, callback) => {
     const query = ('UPDATE proveedores SET ? WHERE Id_proveedor = ?');
     db.query(query, [proveedor, idProveedor], (err, result) => {
-      if (err){
+      if (err) {
         console.error(err);
         return callback(err);
       }
@@ -67,9 +77,9 @@ const Proveedor = {
     });
   },
 
-  delete : (idProveedor, callback) => {
+  delete: (idProveedor, callback) => {
     db.query('DELET FROM proveedores WHERE Id_proveedor = ?', [idProveedor], (err, result) => {
-      if (err){
+      if (err) {
         console.error(err);
         return callback(err);
       }

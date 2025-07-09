@@ -33,6 +33,15 @@ const obtenerPorPlaca = async (placaData) => {
   });
 };
 
+const obtenerPorIdUsuario = async (placaData) => {
+  return new Promise((resolve, reject) => {
+    Vehiculo.getByIdUsuario(placaData, (err, result) => {
+      if (err) return reject(err);
+      resolve(result);
+    });
+  });
+};
+
 const actualizarVehiculo = async (placa, datos) => {
   return new Promise ((resolve, reject) => {
     Vehiculo.update(placa, datos,(err, result) => {
@@ -47,6 +56,7 @@ const actualizarVehiculo = async (placa, datos) => {
 module.exports = {
   crearVehiculo,
   obtenerVehiculos,
+  obtenerPorIdUsuario,
   obtenerPorPlaca,
   actualizarVehiculo
 }

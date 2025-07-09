@@ -24,7 +24,21 @@ const Vehiculo = {
   },
 
   getById: (placa, callback) => {
+    console.log("numero de documento en la consulta", placa);
+    
     db.query('SELECT * FROM vehiculos WHERE placa = ?', [placa], (err, result) => {
+      if (err) {
+        console.error(err);
+        return callback(err);
+      }
+      callback(null, result);
+    });
+  },
+
+  getByIdUsuario: (ID_usuario, callback) => {
+    console.log("numero de documento en la consulta", ID_usuario);
+    
+    db.query('SELECT * FROM vehiculos WHERE ID_usuario = ?', [ID_usuario], (err, result) => {
       if (err) {
         console.error(err);
         return callback(err);

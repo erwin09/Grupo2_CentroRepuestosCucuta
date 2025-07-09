@@ -1,12 +1,13 @@
 const DetalleServicio = require('../models/detalle_servicio.model');
 
 const crearDetalleServicio = async (datos) => {
-  const { ID_mantenimiento, ID_servicio } = datos;
-  if (!ID_mantenimiento || !ID_servicio ) {
+  
+  const { ID_mantenimiento, ID_servicio, precio, tecnico } = datos;
+  if (!ID_mantenimiento || !ID_servicio || precio || tecnico ) {
     throw new Error('Todos los campos son necesarios');
   }
 
-  const nuevoDetalleServicio = { ID_mantenimiento, ID_servicio };
+  const nuevoDetalleServicio = { ID_mantenimiento, ID_servicio, precio, tecnico };
   return new Promise((resolve, reject) => {
     DetalleServicio.create(nuevoDetalleServicio, (err, result) => {
       if (err) return reject(err);

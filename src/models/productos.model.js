@@ -11,6 +11,7 @@ const Productos = {
       callback(null, results);
     });
   },
+
   getTable: (callback) => {
     db.query(`SELECT 
       dm.cantidad, 

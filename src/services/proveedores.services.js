@@ -1,12 +1,14 @@
 const Proveedor = require('../models/proveedores.model');
 
 const crearProveedor = async (datos) => {
-  const { Id_proveedor, nombre, telefono, email, ciudad, nombre_asesor} = datos;
-  if (!Id_proveedor || !nombre || !telefono || !email || !ciudad || !nombre_asesor ) {
+  const { Id_proveedor, nombre, telefono, email, ciudad} = datos;
+  console.log("datos proveedor", datos);
+  
+  if (!Id_proveedor || !nombre || !telefono || !email || !ciudad ) {
     throw new Error('Todos los campos son necesarios');
   }
 
-  const nuevoProveedor = { Id_proveedor, nombre, telefono, email, ciudad, nombre_asesor };
+  const nuevoProveedor = { Id_proveedor, nombre, telefono, email, ciudad };
   return new Promise((resolve, reject) => {
     Proveedor.create(nuevoProveedor, (err, result) => {
       if (err) return reject(err);
