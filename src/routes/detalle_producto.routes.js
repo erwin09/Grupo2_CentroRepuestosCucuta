@@ -4,7 +4,7 @@ const detalleProductoController = require('../controllers/detalle_producto.contr
 
 router.post('/', detalleProductoController.createDetalleProducto);
 router.get('/', detalleProductoController.getAllDetalleProducto);
-router.get('/:id1/:id2', detalleProductoController.getDetalleProductoById);
+router.get('/:id', detalleProductoController.getDetalleProductoById);
 router.put('/:id/:id2', detalleProductoController.updateDetalleProducto);
 
 module.exports = router;

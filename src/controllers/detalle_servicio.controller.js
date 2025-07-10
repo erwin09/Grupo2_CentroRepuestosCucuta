@@ -24,10 +24,11 @@ exports.getAllDetalleServicio = async (req, res) => {
 };
 
 exports.getDetalleServicioById = async (req, res) => {
-    const idHistorial = req.params.id1;
-    const idServicio = req.params.id2;
+    const IdMantenimiento = req.params.id;
+    console.log("id mantenimiento servicios", IdMantenimiento);
+    
     try {
-        const result = await serviceDetalleServicio.obtenerPorIdDetallesServicio(idHistorial, idServicio);
+        const result = await serviceDetalleServicio.obtenerPorIdDetallesServicio(IdMantenimiento);
         res.status(200).send({ message: 'Consulta exitosa', result });
     } catch (error) {
         res.status(500).send({ message: 'Error al obtener', error });
@@ -35,11 +36,11 @@ exports.getDetalleServicioById = async (req, res) => {
 };
 
 exports.updateDetalleServicio = async (req, res) => {
-    const idHistorial = req.params.id1;
+    const IdMantenimiento = req.params.id1;
     const idServicio = req.params.id2;
     const datos = req.body;
     try {
-        const result = await serviceDetalleServicio.actualizarDetalleServicio(idHistorial, idServicio, datos);
+        const result = await serviceDetalleServicio.actualizarDetalleServicio(IdMantenimiento, idServicio, datos);
         res.status(200).send({ message: 'Actualización exitosa', result });
     } catch (error) {
         res.status(500).send({ message: 'Error al actualizar', error });

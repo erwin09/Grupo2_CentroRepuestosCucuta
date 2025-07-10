@@ -24,10 +24,11 @@ exports.getAllDetalleProducto = async (req, res) => {
 };
 
 exports.getDetalleProductoById = async (req, res) => {
-    const idProducto = req.params.id1;
-    const idHistorial = req.params.id2;
+    const idMantenimiento = req.params.id;
+    console.log("controlador id mantenimiento", idMantenimiento);
+    
     try {
-        const result = await serviceDetalleProducto.obtenerPorIdDetallesProducto(idProducto, idHistorial);
+        const result = await serviceDetalleProducto.obtenerPorIdDetallesProducto(idMantenimiento);
         res.status(200).send({ message: 'Consulta exitosa', result });
     } catch (error) {
         res.status(500).send({ message: 'Error al obtener', error });
@@ -36,10 +37,10 @@ exports.getDetalleProductoById = async (req, res) => {
 
 exports.updateDetalleProducto = async (req, res) => {
     const idProducto = req.params.id1;
-    const idHistorial = req.params.id2;
+    const idMantenimiento = req.params.id2;
     const datos = req.body;
     try {
-        const result = await serviceDetalleProducto.actualizarDetalleProducto(idProducto, idHistorial, datos);
+        const result = await serviceDetalleProducto.actualizarDetalleProducto(idProducto, idMantenimiento, datos);
         res.status(200).send({ message: 'Actualización exitosa', result });
     } catch (error) {
         res.status(500).send({ message: 'Error al actualizar', error });

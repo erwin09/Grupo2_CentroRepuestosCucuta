@@ -4,7 +4,7 @@ const detalleServicioController = require('../controllers/detalle_servicio.contr
 
 router.post('/', detalleServicioController.createDetalleServicio);
 router.get('/', detalleServicioController.getAllDetalleServicio);
-router.get('/:id1/:id2', detalleServicioController.getDetalleServicioById);
+router.get('/:id', detalleServicioController.getDetalleServicioById);
 router.put('/:id/:id2', detalleServicioController.updateDetalleServicio);
 
 module.exports = router;
