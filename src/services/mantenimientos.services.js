@@ -42,7 +42,14 @@ const crearMantenimientoCompleto = async (datos) => {
   if (!Id_mantenimientos || !fecha || !descripcion || !ID_vehiculo) {
     throw new Error('Todos los campos son necesarios');
   }
-
+ 
+  /*
+  const calcularFechaProgramada = (fecha, diasSumar) => {
+    const fecha = new Date(fecha);
+    fecha.setDate(fecha.getDate() + diasSumar);
+    return fecha.toISOString().split('T')[0]; 
+  }*/
+ 
   const nuevoMantenimiento = { Id_mantenimientos, fecha, descripcion, ID_vehiculo };
   await crearMantenimiento(nuevoMantenimiento);
 
@@ -53,11 +60,14 @@ const crearMantenimientoCompleto = async (datos) => {
 
   for (const servicio of servicios) {
     console.log("servicios que van ser guardados", servicio);
-    await detSer.crearDetalleServicio({
-      ID_mantenimiento: Id_mantenimientos,
-      ID_servicio: servicio
-    })
+    await detSer.crearDetalleServicio(servicio)
   }
+
+  fecha_programada = calcularFechaProgramada;
+
+
+
+
 };
 
 const obtenerMantenimientos = async () => {
@@ -68,6 +78,8 @@ const obtenerMantenimientos = async () => {
     });
   });
 };
+
+
 
 const obtenerPorPlacaMantenimientos = async (Id_usuario) => {
   return new Promise((resolve, reject) => {

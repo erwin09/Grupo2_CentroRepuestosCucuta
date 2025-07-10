@@ -1,6 +1,8 @@
 const Servicio = require('../models/servicios.model')
 
 const crearServicio = async (datos) => {
+  console.log("datos del frontend servicio", datos);
+  
   const { Id_servicios, nombre, precio, tiempo_estimado, descripcion} = datos;
   if (!Id_servicios || !nombre || !precio || !tiempo_estimado || !descripcion ) {
     throw new Error('Todos los campos son necesarios');

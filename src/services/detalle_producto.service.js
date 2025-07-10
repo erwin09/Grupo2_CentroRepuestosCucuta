@@ -2,12 +2,12 @@ const DetalleProducto = require('../models/detalle_producto.model');
 
 const crearDetalleProducto = async (datos) => {
   console.log("detalles producto", datos);
-  const { ID_producto, ID_mantenimiento, cantidad } = datos;
-  if (!ID_producto || !ID_mantenimiento || !cantidad ) {
+  const { ID_producto, ID_mantenimiento, cantidad, precio } = datos;
+  if (!ID_producto || !ID_mantenimiento || !cantidad || !precio ) {
     throw new Error('Todos los campos son necesarios');
   }
 
-  const nuevoDetalleProducto = { ID_producto, ID_mantenimiento, cantidad };
+  const nuevoDetalleProducto = { ID_producto, ID_mantenimiento, cantidad, precio };
   return new Promise((resolve, reject) => {
     DetalleProducto.create(nuevoDetalleProducto, (err, result) => {
       if (err) return reject(err);
@@ -25,11 +25,15 @@ const obtenerDetallesProducto = async () => {
   });
 };
 
-const obtenerPorIdDetallesProducto = async (IdProducto, IdMantenimiento) => {
+const obtenerPorIdDetallesProducto = async (IdMantenimiento) => {
+  console.log("id manteniento", IdMantenimiento);
+  
   return new Promise((resolve, reject) => {
-    DetalleProducto.getById(IdProducto, IdMantenimiento, (err, result) => {
+    DetalleProducto.getById(IdMantenimiento, (err, result) => {
       if (err) return reject(err);
       resolve(result);
+      console.log("respuesta de backend detalle" , result);
+      
     });
   });
 };

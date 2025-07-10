@@ -14,7 +14,7 @@ const Productos = {
 
   getTable: (callback) => {
     db.query(`SELECT 
-      dm.cantidad, 
+      dm.cantidad,   
       p.Id_producto, 
       p.nombre, 
       p.linea, 
