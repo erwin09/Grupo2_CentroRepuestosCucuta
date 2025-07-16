@@ -4,6 +4,7 @@ const detalleServicioController = require('../controllers/detalle_servicio.contr
 
 router.post('/', detalleServicioController.createDetalleServicio);
 router.get('/', detalleServicioController.getAllDetalleServicio);
+router.get('/estadisticas', detalleServicioController.getAllDetalleServicioStadistic);
 router.get('/:id', detalleServicioController.getDetalleServicioById);
 router.put('/:id/:id2', detalleServicioController.updateDetalleServicio);
 

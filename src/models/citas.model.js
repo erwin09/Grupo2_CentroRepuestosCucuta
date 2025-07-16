@@ -14,7 +14,7 @@ const Citas = {
 
   getAll: (callback) => {
     const query = `
-    SELECT c.Id_cita as codigo, v.placa as placa, c.nombre, c.fecha, c.estado, u.Num_doc
+    SELECT c.Id_cita as codigo, v.placa as placa, c.nombre, c.fecha, c.estado, u.Num_doc, v.marca
       FROM citas c 
     JOIN vehiculos v on c.ID_vehiculo = v.placa
     JOIN usuarios u on v.ID_usuario = u.Num_doc`;

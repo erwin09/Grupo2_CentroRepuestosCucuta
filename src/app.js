@@ -26,7 +26,7 @@ const cron = require('node-cron');
 const revisarNotificaciones = require('./services/notificador.service');
 
 client.on('ready', () => {
-  console.log('⏰ Programando envío de notificaciones cada minuto');
+  console.log('⏰ Programando envío de notificaciones cada dia a las 8 am');
   cron.schedule('0 8 * * *', revisarNotificaciones);
 });
 

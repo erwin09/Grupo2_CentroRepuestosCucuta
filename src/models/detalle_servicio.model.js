@@ -22,6 +22,30 @@ const DetalleServicio = {
     });
   },
 
+getAllStadistic: (callback) => {
+  const query =`
+  SELECT 
+  s.nombre AS servicio,
+  m.fecha,
+  ds.tecnico,
+  COUNT(*) AS cantidad,
+  SUM(ds.precio) AS total
+FROM detalles_servicio ds
+JOIN servicios s ON ds.ID_servicio = s.Id_servicios
+JOIN mantenimientos m ON ds.ID_mantenimiento = m.Id_mantenimientos
+GROUP BY m.fecha, s.nombre, ds.tecnico
+ORDER BY m.fecha, s.nombre, ds.tecnico
+  `;
+    db.query(query, (err, result) => {
+      if (err) {
+        console.error(err);
+        return callback(err);
+      }
+      callback(null, result);
+    });
+  },
+
+
   getById: (IdMantenimiento, callback) => {
     db.query(`
       SELECT

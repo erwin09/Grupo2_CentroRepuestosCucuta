@@ -26,6 +26,15 @@ const obtenerDetallesServicio = async () => {
   });
 };
 
+const obtenerDetallesServicioStadist = async () => {
+  return new Promise((resolve, reject) => {
+    DetalleServicio.getAllStadistic((err, result) => {
+      if (err) return reject(err);
+      resolve(result);
+    });
+  });
+};
+
 const obtenerPorIdDetallesServicio = async (IdMantenimiento) => {
   return new Promise((resolve, reject) => {
     DetalleServicio.getById(IdMantenimiento, (err, result) => {
@@ -49,6 +58,7 @@ const actualizarDetalleServicio = async (IdMantenimiento, IdServicio, datos) => 
 module.exports = {
   crearDetalleServicio,
   obtenerDetallesServicio,
+  obtenerDetallesServicioStadist,
   obtenerPorIdDetallesServicio,
   actualizarDetalleServicio
 }

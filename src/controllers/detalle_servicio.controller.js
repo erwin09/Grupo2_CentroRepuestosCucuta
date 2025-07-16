@@ -23,6 +23,15 @@ exports.getAllDetalleServicio = async (req, res) => {
     }
 };
 
+exports.getAllDetalleServicioStadistic = async (req, res) => {
+    try {
+        const result = await serviceDetalleServicio.obtenerDetallesServicioStadist();
+        res.status(200).send({ message: 'Consulta exitosa', result });
+    } catch (error) {
+        res.status(500).send({ message: 'Error al obtener', error });
+    }
+};
+
 exports.getDetalleServicioById = async (req, res) => {
     const IdMantenimiento = req.params.id;
     console.log("id mantenimiento servicios", IdMantenimiento);
