@@ -1,7 +1,9 @@
 const db = require('../config/db');
+const dayjs = require('dayjs');
 const Historial = require('../models/mantenimientos.model');
 const detPro = require('../services/detalle_producto.service');
 const detSer = require('../services/detalle_servicio.service');
+const detNot = require('../services/detalle_notificacion.service')
 
 const crearMantenimiento = async (datos) => {
   const { Id_mantenimientos, fecha, descripcion, ID_vehiculo } = datos;
@@ -37,19 +39,13 @@ const obtenerNuevoIdMantenimiento = (callback) => {
 };
 
 const crearMantenimientoCompleto = async (datos) => {
+  console.log("datos en el backend crear mantenimiento nuevo", datos);
 
-  const { Id_mantenimientos, fecha, descripcion, ID_vehiculo, productos, servicios } = datos;
+  const { Id_mantenimientos, fecha, descripcion, ID_vehiculo, productos, servicios, notificaciones } = datos;
   if (!Id_mantenimientos || !fecha || !descripcion || !ID_vehiculo) {
     throw new Error('Todos los campos son necesarios');
   }
- 
-  /*
-  const calcularFechaProgramada = (fecha, diasSumar) => {
-    const fecha = new Date(fecha);
-    fecha.setDate(fecha.getDate() + diasSumar);
-    return fecha.toISOString().split('T')[0]; 
-  }*/
- 
+
   const nuevoMantenimiento = { Id_mantenimientos, fecha, descripcion, ID_vehiculo };
   await crearMantenimiento(nuevoMantenimiento);
 
@@ -63,10 +59,19 @@ const crearMantenimientoCompleto = async (datos) => {
     await detSer.crearDetalleServicio(servicio)
   }
 
-  fecha_programada = calcularFechaProgramada;
+  const calcularFechaProgramada = (fechaBase, meses) => {
+    return dayjs(fechaBase).add(meses, 'month').format('YYYY-MM-DD');
+  }
 
-
-
+  for (const notificacion of notificaciones) {
+    const meses = notificacion.tiempo_dias
+    const fecha_programada = await calcularFechaProgramada(fecha, meses)
+    await detNot.crearDetalleNotificacion({
+      ID_mantenimiento: Id_mantenimientos,
+      ID_notificacion: notificacion.ID_notificacion,
+      fecha_programada: fecha_programada
+    })
+  }
 
 };
 

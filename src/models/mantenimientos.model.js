@@ -16,6 +16,7 @@ const Mantenimiento = {
     const query = `
     SELECT
       m.Id_mantenimientos,
+      u.Num_doc,
       m.fecha,
       m.descripcion,
       v.placa,

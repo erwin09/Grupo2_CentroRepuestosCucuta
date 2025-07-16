@@ -25,6 +25,8 @@ const obtenerVehiculos = async () => {
 };
 
 const obtenerPorPlaca = async (placaData) => {
+  console.log("esta en obtener vehiculo");
+  
   return new Promise((resolve, reject) => {
     Vehiculo.getById(placaData, (err, result) => {
       if (err) return reject(err);
@@ -33,9 +35,9 @@ const obtenerPorPlaca = async (placaData) => {
   });
 };
 
-const obtenerPorIdUsuario = async (placaData) => {
+const obtenerPorIdUsuario = async (idUsuario) => {
   return new Promise((resolve, reject) => {
-    Vehiculo.getByIdUsuario(placaData, (err, result) => {
+    Vehiculo.getByIdUsuario(idUsuario, (err, result) => {
       if (err) return reject(err);
       resolve(result);
     });

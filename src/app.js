@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const {client} = require('./services/whatsapp')
 require('dotenv').config();
 const clientesRoutes = require('./routes/clientes.routes')
 const vehiculosRoutes = require('./routes/vehiculos.routes');
@@ -17,9 +18,18 @@ const detalleProductoRoutes = require('./routes/detalle_producto.routes');
 const detalleServicioRoutes = require('./routes/detalle_servicio.routes');
 const app = express();
 
-
 app.use(cors());
 app.use(express.json());
+
+
+const cron = require('node-cron');
+const revisarNotificaciones = require('./services/notificador.service');
+
+client.on('ready', () => {
+  console.log('⏰ Programando envío de notificaciones cada minuto');
+  cron.schedule('0 8 * * *', revisarNotificaciones);
+});
+
 
 //Ruta login
 app.use('/api/auth', authRoutes);

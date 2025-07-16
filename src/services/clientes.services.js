@@ -31,6 +31,8 @@ const obtenerPorId = async (idData) => {
     ClienteModel.getById(idData, (err, cliente) => {
       if (err) return reject(err);
       resolve(cliente);
+      console.log("respuesta consulta cliente por id", cliente  );
+      
     });
   });
 };

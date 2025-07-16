@@ -33,7 +33,7 @@ console.log("entro aqui");
 
 // Obtener un cliente por ID
 exports.getClienteById = async (req, res) => {
-  console.log("id usuario", req)
+  console.log("id usuario", req.params.id)
   const id = req.params.id;
   try {
     const result = await clientesServices.obtenerPorId(id);

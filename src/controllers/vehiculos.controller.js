@@ -36,9 +36,9 @@ exports.getVehiculoByPlaca = async (req, res) => {
   }
 };
 
-exports.getVehiculoByPlaca = async (req, res) => {
+exports.getVehiculoByIdUsuario = async (req, res) => {
   const Id_usuario = req.params.id;
-  console.log("id en el controlador", Id_usuario);
+  console.log("id en el controlador usuario", Id_usuario);
   
   try {
     const vehiculo = await serviceVehiculo.obtenerPorIdUsuario(Id_usuario);

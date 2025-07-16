@@ -1,12 +1,12 @@
 const db = require('../config/db');
 
 const DetalleNotificacion = {
-    create: (notificacion, callback) => {
+  create: (notificacion, callback) => {
     const query = `INSERT INTO detalles_notificacion SET ?`;
     db.query(query, notificacion, (err, results) => {
       if (err) {
         console.error(err);
-      return callback(err);
+        return callback(err);
       }
       callback(null, results);
     });
@@ -35,7 +35,7 @@ const DetalleNotificacion = {
   update: (IdNotificacion, IdMantenimiento, callback) => {
     const query = ('UPDATE detalles_notificacion SET ? WHERE ID_notificacion = ? AND ID_mantenimiento = ?');
     db.query(query, [IdNotificacion, IdMantenimiento], (err, result) => {
-      if (err){
+      if (err) {
         console.error(err);
         return callback(err);
       }
@@ -43,9 +43,9 @@ const DetalleNotificacion = {
     });
   },
 
-  delete : (IdNotificacion, IdMantenimiento, callback) => {
+  delete: (IdNotificacion, IdMantenimiento, callback) => {
     db.query('DELET FROM detalles_notificacion WHERE ID_notificacion = ? AND ID_mantenimiento', [IdNotificacion, IdMantenimiento], (err, result) => {
-      if (err){
+      if (err) {
         console.error(err);
         return callback(err);
       }
