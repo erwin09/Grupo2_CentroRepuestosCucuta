@@ -40,7 +40,7 @@ const NotificarCita = async (datos) => {
       return;
     }
     const numero = `57${datos.telefono}@c.us`;
-    const mensaje = `📆 Sr(a) ${datos.nombre_usuario}, Centro Repuestos Cúcuta le informa que se asigno para el dia ${datos.fecha} la cita del vehiculo: ${datos.ID_vehiculo}, para ${datos.nombre}`;
+    const mensaje = `📆 Sr(a) ${datos.nombre_usuario}, Centro Repuestos Cúcuta le informa que se asigno para el dia ${datos.fecha} la cita del vehiculo: ${datos.ID_vehiculo}, para: ${datos.nombre}`;
     console.log(`📤 Enviando a ${numero}: ${mensaje}`);
 
     await client.sendMessage(numero, mensaje);
