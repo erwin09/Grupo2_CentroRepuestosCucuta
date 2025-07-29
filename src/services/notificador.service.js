@@ -51,7 +51,27 @@ const NotificarCita = async (datos) => {
   }
 };
 
+const enviarCodigoRecuperacion = (numeroTelefono, codigo) => {
+  console.log("esta whatsapp enviando el codigo");
+  
+  return new Promise((resolve, reject) => {
+    const numeroFormateado = `57${numeroTelefono}@c.us`;
+    const mensaje = `🔐 Hola, tu código de recuperación es: *${codigo}*\nEste código es válido por 10 minutos.`;
+
+    client.sendMessage(numeroFormateado, mensaje)
+      .then(response => {
+        console.log('✅ Código enviado con éxito:', response.id.id);
+        resolve(true);
+      })
+      .catch(err => {
+        console.error('❌ Error al enviar código por WhatsApp:', err);
+        reject(err);
+      });
+  });
+};
+
 module.exports = {
   revisarNotificaciones,
-  NotificarCita
-}
+  NotificarCita,
+  enviarCodigoRecuperacion
+} 

@@ -55,8 +55,38 @@ try {
 } catch (error) {
   res.status(500).send({message: 'Error al actualizar el cliente', error})
 }
-
 }
+
+exports.enviarCodigoRecuperacion = async (req, res) => {
+  const { Num_doc } = req.body;
+  console.log("numero de doc para el codigo",Num_doc);
+  
+
+  try {
+    const codigo = await clientesServices.enviarCodigoRecuperacion(Num_doc);
+    res.send({ message: 'Código enviado', codigo }); // en producción no se debe devolver
+  } catch (error) {
+    if (error.message === 'Usuario no encontrado') {
+      res.status(404).send({ message: error.message });
+    } else {
+      console.error(error);
+      res.status(500).send({ message: 'Error al generar el código' });
+    }
+  }
+};
+
+
+exports.recuperarContrasena = (req, res) => {
+  const { Num_doc, codigo, nuevaContrasena } = req.body;
+
+clientesServices.verificarActualizarContrasena(Num_doc, codigo, nuevaContrasena, (err, result) => {
+    if (err) {
+      return res.status(400).json({ message: err.message });
+    }
+
+    res.json({ message: 'Contraseña actualizada correctamente' });
+  });
+};
 
 // Eliminar un cliente
 exports.deleteCliente = (req, res) => {

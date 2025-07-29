@@ -15,7 +15,7 @@ const login = async (Num_doc, contraseña) => {
             const usuario = results[0];
             //verifica que el usuario en el estado este activo
             if (usuario.estado !== 1) {
-                return reject({ status: 403, message: 'Usuario desactivado. Contacte con el administrador.' });
+                return reject({ status: 403, message: 'Usuario desactivado.' });
             }
             //verificación de la contraseña
             const passwordCorrecta = await bcrypt.compare(contraseña, usuario.contrasena);
