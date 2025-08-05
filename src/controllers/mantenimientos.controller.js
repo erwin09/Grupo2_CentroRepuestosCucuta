@@ -48,7 +48,7 @@ exports.getAllmantenimiento = async (req, res) => {
   }
 };
 
-//para generar el id y no se repitiera
+
 exports.getMantenimientoById = async (req, res) => {
   const idHistorial = req.params.id;
   try {
